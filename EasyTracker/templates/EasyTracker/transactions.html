@@ -1,0 +1,137 @@
+{% load humanizelib %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% if messages %}
+        {% for m in messages %}
+            <div class="toast toast-top toast-end" id="msg">
+                <div class="alert alert-success">
+                <span>{{ m }}</span>
+                </div>
+            </div>
+        {% endfor %}
+        <script>
+            gsap.to('#msg',{opacity:0,duration:3,y:-500,delay:3})
+        </script>
+{% endif %}
+<div class="container mx-auto mt-5 h-screen" {% if LANGUAGE_CODE == 'fa' %} lang="fa" dir="rtl" {% else %} lang="en" dir="ltr" {% endif %}>
+    <div >
+        <!-- row 1 -->
+        <div>   
+            <form class="grid md:grid-cols-6 grid-cols-3 justify-items-stretch content-stretch gap-4 p-6" action="" hx-get="{% url 'easy-tracker:home' %}" hx-target="#body" hx-swap="innerHTML transition:true" hx-indicator="#spinner">
+                    <div>
+                    <label class="form-control ">
+                        <span class="label-text">{% translate 'Wallet' %}</span>
+                        <select  class="select select-bordered" id="id_wallet" name="wallet">
+                            
+                            <option value="all" >{% translate 'All' %} </option>
+                        {% for w in wallets %}
+                            <option value="{{ w }}" {% if wallet and wallet == w %} selected {% endif %} >{{ w }}</option>
+                        {% endfor %}
+                        </select>
+                      </label>
+                    </div>
+                    <div>
+                <label class="form-control ">
+                    <span class="label-text">{% translate 'Year' %}</span>
+                    <select  class="select select-bordered" id="id_year" name="year">
+                        
+                        <option value="all" >{% translate 'All' %} </option>
+                    {% for y in years %}
+                        <option value="{{ y }}" {% if year and year == y %} selected {% endif %} >{{ y }}</option>
+                    {% endfor %}
+                    </select>
+                  </label>
+                </div>
+                <div>
+                  <label class="form-control ">
+                    <span class="label-text">{% translate 'Month' %}</span>
+                    <select class="select select-bordered" id="id_month" name="month">
+                        
+                        <option value="all" >{% translate 'All' %} </option>
+                    {% if LANGUAGE_CODE == 'fa' %} 
+                    {% for m in jalali_months %}
+                        <option value="{{ m }}" {% if month and month == m %} selected {% endif %} >{{ m }}</option>
+                    {% endfor %}
+                    {% else %}
+                    {% for m in months %}
+                        <option value="{{ m }}" {% if month and month == m %} selected {% endif %} >{{ m }}</option>
+                    {% endfor %}
+                    {% endif %}
+                    </select>
+                  </label>
+                </div>
+                <div>
+                <label class="form-control ">
+                    <span class="label-text">{% translate 'Category' %}</span>
+                    <select class="select select-bordered" id="id_category" name="category">
+                        
+                        <option value="all" >{% translate 'All' %} </option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}"  {% if category.id|stringformat:"s" == cat %}selected{% endif %} >{{ category.name }}</option>
+                    {% endfor %}
+                    </select>
+                  </label>
+                </div>
+                <div>
+                  <label class="form-control ">
+                    <span class="label-text">{% translate 'Type' %}</span>
+                    <select class="select select-bordered" id="id_name" name="type">
+                       
+                        <option value="all" >{% translate 'All' %} </option>
+                        <option value="income" {% if type == 'income' %}selected{% endif %} >{% translate 'Income' %}</option>
+                        <option value="expense" {% if type == 'expense' %}selected{% endif %} >{% translate 'Expense' %}</option>
+        
+                    </select>
+                  </label>
+                </div>
+                <div class="self-end">
+                  <button type="submit" class="shadow-lg shadow-emerald-500/60 w-full btn btn-success">{% translate 'Filter' %}</button>
+                </div>
+        </form>
+        </div>
+        <!-- row 2 -->
+        <div class="divider text-xl shadow-md">{% translate 'Summary' %}</div>
+        <div class="grid grid-cols-3 justify-items-center gap-4 p-2">
+            <h5 class="text-emerald-500 text-l md:text-xl font-bold">{% translate 'Income' %} : {{income|intcomma}}</h5>
+            <h5 class="text-yellow-500 text-l md:text-xl font-bold">{% translate 'Expense' %} : {{expense|intcomma}}</h5>
+            <h5 class="{% if net > 0 %} text-emerald-500 {% else %} text-rose-500 {% endif %} text-l md:text-xl font-bold">{% translate 'Net' %} : {{net|intcomma}}</h5>
+        </div>
+
+         <!-- row 3 -->
+        <div>
+            {% if transactions %}
+                <div class="divider text-xl shadow-md">{% translate 'Details' %}</div>
+                <div class="overflow-y-auto h-screen overflow-x-auto">
+        <table class=" table ">
+          <thead>
+            <tr>
+
+              <th class="text-emerald-500 font-bold text-xl">#</th>
+              <th class="text-emerald-500 font-bold text-xl">{% translate 'Type' %}</th>
+              <th class="text-emerald-500 font-bold text-xl">{% translate 'Amount' %}</th>
+              <th class="text-emerald-500 font-bold text-xl">{% translate 'Category' %}</th>
+              <th class="text-emerald-500 font-bold text-xl">{% translate 'Date' %}</th>
+              <th class="text-emerald-500 font-bold text-xl">{% translate 'Wallet' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in transactions %}
+            <tr class="hover">
+              <th>{{ forloop.counter }}</th>
+              <td>{% if LANGUAGE_CODE == 'fa' %} {{ t.get_persian_type }} {% else %} {{ t.type }} {% endif %}</td>
+              <td>{{ t.amount|intcomma }}</td>
+              <td>{{ t.category }}</td>
+              <td>{% if LANGUAGE_CODE == 'fa' %} {{ t.get_jalali_date }} {% else %} {{ t.date }} {% endif %} </td>
+              <td>{{ t.wallet_name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+        {% else %}
+        {% translate 'No Transactions' %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+

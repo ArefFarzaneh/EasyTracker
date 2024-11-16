@@ -1,0 +1,31 @@
+
+
+<div class="container mx-auto overflow-x-scroll rounded-md mt-5 bg-zinc-800 p-4">
+    {% if have_transactions %}
+    <h5 class="text-center font-bold text-emerald-500 mb-3">Please select a month to see details:</h5>
+
+    <div role="tablist" class="tabs tabs-bordered  ">
+        {% for item in wallet_d %}
+        <a hx-get="{% url 'easy-tracker:month-detail' pk item.transactions__date__month item.transactions__date__year %}"
+         hx-target="#month-detail" hx-swap="innerHTML transition:true" hx-indicator="#spinner"  role="tab" class="tab" >
+         <h5 class="font-bold">{{item.transactions__date__month}}/{{item.transactions__date__year}}</h5></a>
+        {% endfor %}
+       
+    </div>
+    <div id="month-detail"></div>
+
+
+
+        {% else %}
+<h5 class="font-bold text-center mb-3">No transactions</h5>
+<a class="cursor-pointer" hx-get="{% url 'easy-tracker:add-transaction' %}"
+hx-target="#content" hx-swap="innerHTML transition:true" hx-indicator="#spinner">
+<h5 class=" text-center text-emerald-500" > 
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      
+    Add Transaction</h5></a>
+        {% endif %}
+
+</div>

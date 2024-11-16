@@ -1,0 +1,45 @@
+{% load static %}
+<div class="navbar bg-base-100">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a href="{% url 'easy-tracker:change-lang' %}?lang=en&next={{ request.path }}" class=" text-xl ml-2"><img src="{% static 'images/united kingdom-32.png' %}" width="70%" alt="English"></a> 
+          </li>
+          <li>
+            <a href="{% url 'easy-tracker:change-lang' %}?lang=fa&next={{ request.path }}" class=" text-xl ml-2"><img src="{% static 'images/iran-32.png' %}" width="70%" alt="Persian"></a>
+          </li>
+        </ul>
+      </div>
+      <a href="/" class="btn btn-ghost text-xl">EasyTracker</a>
+       </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+          <a href="{% url 'easy-tracker:change-lang' %}?lang=en&next={{ request.path }}" class=" text-xl ml-2"><img src="{% static 'images/united kingdom-32.png' %}" width="70%" alt="English"></a> 
+        </li>
+        <li>
+          <a href="{% url 'easy-tracker:change-lang' %}?lang=fa&next={{ request.path }}" class=" text-xl ml-2"><img src="{% static 'images/iran-32.png' %}" width="70%" alt="Persian"></a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+        {% if request.user.is_authenticated %}
+            <a href="/accounts/logout" class="btn bg-amber-500 text-black hover:bg-amber-600 hover:text-white">Logout
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+              </svg>
+              </a>
+        {% else %}
+            <a href="/accounts/login" class="btn bg-emerald-500 text-black hover:bg-emerald-500 hover:text-white">Login
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
+              </svg>
+              
+            </a>
+        {% endif %}
+    </div>
+  </div>

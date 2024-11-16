@@ -1,0 +1,26 @@
+{% load widget_tweaks %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<div class="container bg-base-300 p-3 lg:grid lg:grid-cols-3 lg:gap-2  justify-items-center mx-auto rounded-lg " {% if LANGUAGE_CODE == 'fa' %} lang="fa" dir="rtl" {% else %} lang="en" dir="ltr" {% endif %}>
+    <form novalidate class="max-w-md rounded-lg shadow-lg" action="" hx-post="{% url 'easy-tracker:add-category' %}" hx-target="#content" hx-swap="innerHTML transition:true">
+    <div class="mx-auto">
+        <label class="input input-bordered {% if form.name.errors or exc %} input-error {% endif %} flex items-center gap-2">
+            <h5 class="mr-2">{% translate 'Name' %}</h5>
+            <input id="id_name" name="name" value="{{ form.data.name|default_if_none:'' }}"  type="text" class="grow " placeholder=""  />
+          </label>
+        {% if form.name.errors %}
+            {% for e in form.name.errors %}
+                <p class="text-error mt-1">{{e}}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% if exc %}
+    <p class="text-error mt-1">{{exc}}</p>
+    {% endif %}
+   
+    <button type="submit" class="max-w-lg mt-2 bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-900 focus:ring-opacity-50">
+        {% translate 'Submit' %}
+    </button>
+</form>
+</div>

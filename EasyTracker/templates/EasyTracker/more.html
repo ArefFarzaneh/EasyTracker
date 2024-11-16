@@ -1,0 +1,43 @@
+{% load widget_tweaks %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<div class="col-span-3 ">
+<div class="mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mb-1 text-emerald-500">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+      </svg>
+      
+      
+    <select class="select select-bordered w-full {% if form.repeating.errors %} select-error {% endif %} "  id="id_repeating" name="repeating">
+        <option value="" disabled {% if not form.data.repeating %}selected{% endif %}>{% translate 'Repeating' %} </option>
+        <option value="daily" {% if form.data.repeating == 'daily' %}selected{% endif %}>{% translate 'Daily' %}</option>
+        <option value="weekly" {% if form.data.repeating == 'weekly' %}selected{% endif %}>{% translate 'Weekly' %}</option>
+        <option value="monthly" {% if form.data.repeating == 'monthly' %}selected{% endif %}>{% translate 'Monthly' %}</option>
+      </select>
+    
+    </label>
+    {% if form.repeating.errors %}
+        {% for e in form.repeating.errors %}
+            <p class="text-error mt-1">{{e}}</p>
+        {% endfor %}
+    {% endif %}
+</div>
+<div class="mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mb-1 text-emerald-500">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+      </svg>
+      
+    <textarea class="textarea textarea-bordered w-full" id="id_note" name="note" placeholder="{% translate 'Note' %}"></textarea>
+{% if form.note.errors %}
+    {% for e in form.note.errors %}
+        <p class="text-error mt-1">{{e}}</p>
+    {% endfor %}
+{% endif %}
+
+<a class="cursor-pointer" hx-get="{% url 'easy-tracker:transaction-less' %}" hx-target="#more" hx-swap="innerHTML transition:true" hx-indicator="#spinner"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-emerald-500">
+    <path stroke-linecap="round" stroke-linejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
+  
+  </svg>{% translate 'Less Details' %}</a>
+</div>
+</div>

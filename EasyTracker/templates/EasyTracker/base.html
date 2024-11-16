@@ -1,0 +1,56 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html {% if LANGUAGE_CODE == 'fa' %} lang="fa" dir="rtl" {% else %} lang="en" dir="ltr" {% endif %} >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block meta %}
+    <!-- Additional meta tags can be added here -->
+    {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/jalalidatepicker.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/spinner.css' %} ">
+    <script type="text/javascript" src="{% static 'js/jalalidatepicker.min.js' %} "></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <!-- htmx -->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>  -->
+    <script src="{% static 'js/Highcharts-Dashboards-2.3.0/code/dashboards.js' %}"></script>
+
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'  id="body">
+    
+    <!-- spinner -->
+    <div class="relative">
+        <div class="fixed inset-y-1/2 inset-x-1/2">
+            <span id="spinner" class="htmx-indicator loading loading-bars text-success loading-lg"></span>
+        </div>
+    </div>
+    <!-- end spinner -->
+
+    {% include 'EasyTracker/navbar.html' %}
+
+    <main>
+        {% block content %}
+            <!-- Main content goes here -->
+            
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% include 'EasyTracker/bottombar.html' %}
+    </footer>
+
+    {% block scripts %}
+    
+    {% endblock %}
+</body>
+</html>

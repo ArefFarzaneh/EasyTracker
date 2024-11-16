@@ -1,0 +1,72 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load humanizelib %}
+<div class="container grid grid-cols-5 gap-2 p-3  justify-items-center mx-auto rounded overflow-y-scroll " {% if LANGUAGE_CODE == 'fa' %} lang="fa" dir="rtl" {% else %} lang="en" dir="ltr" {% endif %}>
+    {% if transactions %}
+        <table class="table col-span-4">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th class="text-emerald-500 text-lg">#</th>
+              <th class="text-emerald-500 text-lg">Type</th>
+              <th class="text-emerald-500 text-lg">Amount</th>
+              <th class="text-emerald-500 text-lg">Category</th>
+              <th class="text-emerald-500 text-lg">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                {% for t in transactions %}
+                    <tr class="hover">
+                    <th>{{forloop.counter}}</th>
+                    <td>{{ t.type }}</td>
+                    <td>{{ t.amount|intcomma }}</td>
+                    <td>{{ t.category }}</td>
+                    <td>{{ t.date }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                    <h5 class="table col-span-4 text-emerald-500 text-xl">No transactions!</h5>
+            {% endif %}
+          </tbody>
+        </table>
+        <!-- fifth col -->
+        <div>  
+            
+            <h5 class="text-lg text-emerald-500 mt-3">Filters</h5>
+            <form action="" hx-get="{% url 'easy-tracker:table' %}" hx-target="#content"
+            hx-indicator="#spinner" hx-swap="innerHTML transition:true" >
+            <div class="divider my-0oop"></div>
+              <label class="form-control w-full max-w-xs">
+                <div class="label">
+                  <span class="label-text text-emerald-500 text-lg">Category </span>
+                </div>
+                <select name="category" class="select select-bordered" >
+                    <option  value="all">All</option>
+                {% for cat in categories %}
+                    <option value="{{cat.id}}" {% if selected_cat == cat.id %} selected {% endif %} > {{cat}}</option>
+                {% endfor %}
+                </select>
+              </label>
+              <h5 class="label-text text-emerald-500 text-lg mt-3">Time </h5>
+              <label class="input input-bordered flex items-center gap-2 mt-3">
+                From
+                <input name="from-date" value="{{from_date}}" type="date" class="grow" />
+              </label>
+
+              <label class="input input-bordered flex items-center gap-2 mt-3">
+                To
+                <input name="to-date" value="{{to_date}}" type="date" class="grow" />
+              </label>
+
+
+              <button class="btn btn-success mt-3"> Filter</button>
+            </form>
+            <div class="divider"></div>
+            <h5 class="text-lg text-emerald-500 mt-3">Summary:</h5>
+            <h5>Income: {{income|intcomma}}</h5>
+            <h5>Expense: {{expense|intcomma}}</h5>
+            
+        </div>
+        <!-- end fifth col -->
+  </div>

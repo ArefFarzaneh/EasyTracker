@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-18 16:38+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: EasyTracker/forms.py:19
+msgid "Please fill the amount field."
+msgstr "لطفا فیلد مبلغ تراکنش را تکمیل کنید."
+
+#: EasyTracker/forms.py:20
+msgid "Please fill the type field."
+msgstr "لطفا فیلد نوع تراکنش را تکمیل کنید."
+
+#: EasyTracker/forms.py:21
+msgid "Please fill the date field."
+msgstr "لطفا فیلد تاریخ تراکنش را تکمیل کنید."
+
+#: EasyTracker/forms.py:22
+#, fuzzy
+#| msgid "Please fill the date field."
+msgid "Please fill the category field."
+msgstr "لطفا فیلد تاریخ تراکنش را تکمیل کنید."
+
+#: EasyTracker/forms.py:23
+#, fuzzy
+#| msgid "Please fill the date field."
+msgid "Please fill the wallet name field."
+msgstr "لطفا فیلد کیف پول را تکمیل کنید."
+
+#: EasyTracker/forms.py:48
+#, fuzzy
+#| msgid "Please fill the date field."
+msgid "Please fill the name field."
+msgstr "لطفا فیلد تاریخ تراکنش را تکمیل کنید."
+
+#: EasyTracker/forms.py:49
+#, fuzzy
+#| msgid "Please fill the date field."
+msgid "Please fill the initial balance field."
+msgstr "لطفا فیلد کیف پول را تکمیل کنید."
+
+#: EasyTracker/models.py:10
+msgid "Category Name"
+msgstr "دسته بندی"
+
+#: EasyTracker/models.py:28
+#: EasyTracker/templates/EasyTracker/add-category.html:9
+#: EasyTracker/templates/EasyTracker/add-wallet.html:9
+msgid "Name"
+msgstr "نام"
+
+#: EasyTracker/models.py:29
+msgid "Initial balance"
+msgstr "مبلغ اولیه"
+
+#: EasyTracker/models.py:30
+#: EasyTracker/templates/EasyTracker/add-wallet.html:32
+msgid "Exclude from total"
+msgstr "عدم محاسبه در کل"
+
+#: EasyTracker/models.py:49
+#: EasyTracker/templates/EasyTracker/add-transaction.html:19
+msgid "Transaction Type"
+msgstr "نوع تراکنش"
+
+#: EasyTracker/models.py:50
+#, fuzzy
+#| msgid "Income"
+msgid "income"
+msgstr "درامد"
+
+#: EasyTracker/models.py:50
+#: EasyTracker/templates/EasyTracker/add-transaction.html:20
+#: EasyTracker/templates/EasyTracker/transactions.html:81
+#: EasyTracker/templates/EasyTracker/transactions.html:95
+msgid "Income"
+msgstr "درامد"
+
+#: EasyTracker/models.py:51
+#, fuzzy
+#| msgid "Expense"
+msgid "expense"
+msgstr "خرج"
+
+#: EasyTracker/models.py:51
+#: EasyTracker/templates/EasyTracker/add-transaction.html:21
+#: EasyTracker/templates/EasyTracker/transactions.html:82
+#: EasyTracker/templates/EasyTracker/transactions.html:96
+msgid "Expense"
+msgstr "خرج"
+
+#: EasyTracker/models.py:55 EasyTracker/models.py:66
+#: EasyTracker/templates/EasyTracker/more.html:12
+msgid "Repeating"
+msgstr "تکرار"
+
+#: EasyTracker/models.py:56
+#, fuzzy
+#| msgid "Daily"
+msgid "daily"
+msgstr "روزانه"
+
+#: EasyTracker/models.py:56 EasyTracker/templates/EasyTracker/more.html:13
+msgid "Daily"
+msgstr "روزانه"
+
+#: EasyTracker/models.py:57
+#, fuzzy
+#| msgid "Weekly"
+msgid "weekly"
+msgstr "هفتگی"
+
+#: EasyTracker/models.py:57 EasyTracker/templates/EasyTracker/more.html:14
+msgid "Weekly"
+msgstr "هفتگی"
+
+#: EasyTracker/models.py:58
+#, fuzzy
+#| msgid "Monthly"
+msgid "monthly"
+msgstr "ماهانه"
+
+#: EasyTracker/models.py:58 EasyTracker/templates/EasyTracker/more.html:15
+msgid "Monthly"
+msgstr "ماهانه"
+
+#: EasyTracker/models.py:62
+#: EasyTracker/templates/EasyTracker/transactions.html:77
+#: EasyTracker/templates/EasyTracker/transactions.html:110
+msgid "Type"
+msgstr "نوع تراکنش"
+
+#: EasyTracker/models.py:63
+#: EasyTracker/templates/EasyTracker/add-transaction.html:42
+#: EasyTracker/templates/EasyTracker/transactions.html:111
+msgid "Amount"
+msgstr "مبلغ"
+
+#: EasyTracker/models.py:64
+#: EasyTracker/templates/EasyTracker/transactions.html:65
+#: EasyTracker/templates/EasyTracker/transactions.html:112
+#, fuzzy
+#| msgid "Category Name"
+msgid "Category"
+msgstr "دسته بندی"
+
+#: EasyTracker/models.py:65
+#: EasyTracker/templates/EasyTracker/transactions.html:113
+msgid "Date"
+msgstr "تاریخ"
+
+#: EasyTracker/models.py:67 EasyTracker/templates/EasyTracker/more.html:30
+msgid "Note"
+msgstr "یادداشت"
+
+#: EasyTracker/models.py:68
+#: EasyTracker/templates/EasyTracker/add-transaction.html:108
+#: EasyTracker/templates/EasyTracker/transactions.html:23
+#: EasyTracker/templates/EasyTracker/transactions.html:114
+msgid "Wallet"
+msgstr "کیف پول"
+
+#: EasyTracker/templates/EasyTracker/add-category.html:23
+#: EasyTracker/templates/EasyTracker/add-transaction.html:130
+#: EasyTracker/templates/EasyTracker/add-wallet.html:41
+msgid "Submit"
+msgstr "ثبت"
+
+#: EasyTracker/templates/EasyTracker/add-transaction.html:6
+#, fuzzy
+#| msgid "Add New Transaction"
+msgid "Add New Transaction"
+msgstr " تراکنش جدید"
+
+#: EasyTracker/templates/EasyTracker/add-transaction.html:61
+#: EasyTracker/templates/EasyTracker/add-transaction.html:104
+msgid "Add"
+msgstr "اضافه کردن"
+
+#: EasyTracker/templates/EasyTracker/add-transaction.html:124
+msgid "More Details"
+msgstr "جزییات بیشتر"
+
+#: EasyTracker/templates/EasyTracker/add-transaction.html:135
+msgid "Cancel"
+msgstr "کنسل"
+
+#: EasyTracker/templates/EasyTracker/add-wallet.html:20
+#, fuzzy
+#| msgid "Initial balance"
+msgid "initial balance"
+msgstr "مبلغ اولیه"
+
+#: EasyTracker/templates/EasyTracker/categories.html:9
+#, fuzzy
+#| msgid "Category Name"
+msgid "Add Category"
+msgstr "دسته بندی"
+
+#: EasyTracker/templates/EasyTracker/more.html:41
+msgid "Less Details"
+msgstr "جزییات کمتر"
+
+#: EasyTracker/templates/EasyTracker/success.html:12
+msgid "Done"
+msgstr "انجام شد"
+
+#: EasyTracker/templates/EasyTracker/success.html:15
+msgid "Home"
+msgstr "خانه"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:26
+#: EasyTracker/templates/EasyTracker/transactions.html:38
+#: EasyTracker/templates/EasyTracker/transactions.html:50
+#: EasyTracker/templates/EasyTracker/transactions.html:68
+#: EasyTracker/templates/EasyTracker/transactions.html:80
+msgid "All"
+msgstr "همه"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:35
+msgid "Year"
+msgstr "سال"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:47
+#, fuzzy
+#| msgid "Monthly"
+msgid "Month"
+msgstr "ماهانه"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:88
+msgid "Filter"
+msgstr "فیلتر"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:93
+msgid "Summary"
+msgstr "خلاصه"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:97
+msgid "Net"
+msgstr "خالص"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:103
+#, fuzzy
+#| msgid "Details"
+msgid "Details"
+msgstr "جزییات"
+
+#: EasyTracker/templates/EasyTracker/transactions.html:132
+#, fuzzy
+#| msgid "Transaction Type"
+msgid "No Transactions"
+msgstr " تراکنش جدید"
+
+#: EasyTracker/views.py:135 EasyTracker/views.py:213
+msgid "Transactin added successfully"
+msgstr "تراکنش با موفقیت اضافه شد"
+
+#: EasyTracker/views.py:173
+msgid "Wallet added successfully"
+msgstr "کیف پول با موفقیت اضافه شد"
+
+#, fuzzy
+#~| msgid "Transaction Type"
+#~ msgid "Transactions"
+#~ msgstr " تراکنش جدید"
