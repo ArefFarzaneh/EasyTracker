@@ -84,7 +84,7 @@ class Transaction(models.Model):
     repeating = models.CharField(max_length=20,choices=TRANSACTION_REPEATING_CHOICES,null=True,blank=True,verbose_name=_("Repeating"))
     note = models.CharField(max_length=200,null=True,blank=True,verbose_name=_("Note"))
     wallet_name = models.ForeignKey(Wallet,on_delete=models.CASCADE,related_name='transactions',verbose_name=_("Wallet"))
-    jalali_date = jmodels.jDateField(verbose_name=_("Jalali Date"), auto_now_add=True)
+    jalali_date = jmodels.jDateField(verbose_name=_("Jalali Date"))
     
     def __str__(self):
         return f'{self.amount} -> {self.date}'

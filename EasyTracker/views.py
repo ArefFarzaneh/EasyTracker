@@ -228,9 +228,11 @@ class AddTransactionView(LoginRequiredMixin,View):
             # categories = Category.objects.filter(user=request.user)
             if form.is_valid():
                 cd = form.cleaned_data
+                date = cd['date']
+                jdate = jdatetime.date.fromgregorian(day=date.day,month=date.month,year=date.year)
                 Transaction.objects.create(user=request.user,type=cd['type'],amount=cd['amount'],
                                         category=cd['category'],date=cd['date'],repeating=cd['repeating'],
-                                        note=cd['note'],wallet_name=cd['wallet_name'])
+                                        note=cd['note'],wallet_name=cd['wallet_name'],jalali_date = jdate)
                 w = Wallet.objects.get(user = request.user,name = cd['wallet_name'])
                 total_wallet = Wallet.objects.get(user = request.user,name = 'Total')
                 if cd['type'] == 'income':
@@ -243,6 +245,8 @@ class AddTransactionView(LoginRequiredMixin,View):
                         total_wallet.expense += int(cd['amount'])
                 w.save()
                 total_wallet.save()
+                
+                print(jdate)
                 messages.success(request,_("Transactin added successfully"))
                 return render(request,'EasyTracker/success.html')
             return render(request,'EasyTracker/add-transaction.html',{'form':form,'has_wallet':has_wallet})
